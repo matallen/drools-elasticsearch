@@ -1,0 +1,17 @@
+  {
+    "id": ${ID},
+    "index": "${INDEX}",
+    "type": "${TYPE}",
+    "@timestamp": "${TIMESTAMP}",
+    "@breadcrumb": "${BREADCRUMB}",
+    "@message": "${MESSAGE}",
+    "numberOfFacts": ${FACTSSIZE},
+    "numberOfRulesFired":${RULESSIZE},
+    "rulesFired":[
+    <#list RULESFIRED as item>
+        "${item}"<#if item_has_next>,</#if>
+    </#list>
+    ],
+    "durationInMs_factInsertion":${FACT_INSERTION_DURATION},
+    "durationInMs_ruleFiring":${RULE_FIRING_DURATION}
+  }

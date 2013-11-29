@@ -1,0 +1,208 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<name>${project.groupId}.${project.artifactId}</name>
+	<groupId>org.jboss.drools</groupId>
+	<artifactId>drools-elasticsearch</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+<!-- mvn package -DskipTests jetty:run -Dinstance=1 -Djetty.port=8081 -->
+
+	<properties>
+		<brms.version>5.3.1.BRMS</brms.version>
+	</properties>
+	<build>
+	 <finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.10</version>
+				<configuration>
+					<systemProperty>
+						<name>com.sun.management.jmxremote.port</name>
+						<value>9530</value>
+					</systemProperty>
+					<systemProperty>
+						<name>com.sun.management.jmxremote.authenticate</name>
+						<value>false</value>
+					</systemProperty>
+					<!--
+					<jettyConfig>/home/mallen/Applications/jetty-6.1.10/etc/jetty-jmx.xml</jettyConfig>
+					-->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+	
+		<!-- FOR THE ELASTICSEARCH EVENT LISTENER -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency>
+		
+		<!-- /FOR THE ELASTICSEARCH EVENT LISTENER -->
+		<dependency>
+			<groupId>net.java.quickcheck</groupId>
+			<artifactId>quickcheck</artifactId>
+			<version>0.6</version>
+		</dependency>
+			
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<!-- COMMUNITY DEPENDENCIES -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.2.1.GA</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>jbpm-flow</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+<!--
+		<dependency>
+            <groupId>jboss-enterprise.brms-manager</groupId>
+            <artifactId>jboss-brms</artifactId>
+			<version>${brms.version}</version>
+            <type>war</type>
+		</dependency>
+-->
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>drools-templates</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>jxl</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>drools-core</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>knowledge-api</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>drools-decisiontables</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>ecj</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>antlr-runtime</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.brms-engine</groupId>
+			<artifactId>mvel2</artifactId>
+			<version>${brms.version}</version>
+		</dependency>
+	    
+			<!--
+		ENTERPRISE DEPENDENCIES
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>activation</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>jaxrs-api</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>jcip-annotations</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>jsr250-api</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>jboss-enterprise.resteasy</groupId>
+			<artifactId>scannotation</artifactId>
+			<version>5.1.2.GA</version>
+		</dependency>
+		-->
+	</dependencies>
+</project>
+

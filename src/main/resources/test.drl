@@ -1,0 +1,23 @@
+package testpackage
+
+import java.lang.String;
+
+declare MyFact
+  name: String
+  amount: Integer
+  approved: Boolean
+end
+
+rule "amount greater than 10"
+when
+	$e:MyFact(amount < 10)
+then
+	System.out.println("1 - found fact '"+ $e +"'");
+end
+
+rule "amount less than 90"
+when
+	$e:MyFact(amount > 90)
+then
+	System.out.println("2 - found fact '"+ $e +"'");
+end
